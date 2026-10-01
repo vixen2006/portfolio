@@ -31,26 +31,48 @@
 const skillGroups = [
   {
     label: 'Languages',
-    skills: ['Java', 'C', 'C++', 'Python', 'JavaScript', 'SQL']
+    skills: ['Python', 'Java', 'JavaScript', 'TypeScript', 'C/C++', 'SQL']
   },
   {
     label: 'Frontend',
-    skills: ['React.js', 'Vue.js', 'Nuxt', 'Vue Router', 'Pinia', 'HTML', 'Tailwind CSS']
+    skills: ['Next.js', 'React.js', 'Vue.js', 'Nuxt', 'MapLibre GL JS', 'HTML5', 'Tailwind CSS', 'Vue Router', 'Pinia']
   },
   {
-    label: 'Backend',
-    skills: ['Node.js (Express)', 'FastAPI', 'REST APIs']
+    label: 'Backend & APIs',
+    skills: ['FastAPI', 'Node.js', 'Flask', 'REST APIs', 'JSON / Structured Outputs', 'OAuth 2.0', 'Auth0']
+  },
+  {
+    label: 'Generative AI & ML',
+    skills: [
+      'LLM APIs (Gemini, OpenAI-compatible)',
+      'Prompt-driven pipelines',
+      'PyTorch',
+      'XGBoost',
+      'scikit-learn',
+      'Hugging Face',
+      'Pandas',
+      'NumPy',
+      'Reinforcement Learning'
+    ]
   },
   {
     label: 'Databases',
-    skills: ['PostgreSQL', 'MySQL', 'SQLite']
+    skills: ['MySQL', 'SQLite', 'Firebase Firestore', 'PostgreSQL']
   },
   {
-    label: 'Tools',
-    skills: ['Git', 'GitHub', 'Docker', 'Postman', 'Render']
+    label: 'Cloud & Infrastructure',
+    skills: ['Google Cloud Platform', 'Docker', 'Render', 'Vercel']
   },
   {
-    label: 'Core Competencies',
+    label: 'Developer Tools',
+    skills: ['Git', 'GitHub', 'Postman', 'Vite']
+  },
+  {
+    label: 'UI/UX Designing',
+    skills: ['Blender', 'UI/UX Design', 'Figma', 'Wireframing', 'Prototyping', 'Design Systems']
+  },
+  {
+    label: 'Core CS',
     skills: ['DSA', 'OOP', 'DBMS', 'Operating Systems', 'Computer Networks', 'Probability & Statistics']
   }
 ]
@@ -62,9 +84,10 @@ const skillGroups = [
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   border: 1px solid var(--border);
-  border-radius: 3px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
   background-color: var(--border);
+  box-shadow: var(--shadow);
 }
 
 .skill-group {
@@ -73,6 +96,11 @@ const skillGroups = [
   display: flex;
   flex-direction: column;
   gap: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.skill-group:hover {
+  background-color: var(--card-hover-bg);
 }
 
 .group-label {
@@ -81,6 +109,11 @@ const skillGroups = [
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-subtle);
+  transition: color 0.2s ease;
+}
+
+.skill-group:hover .group-label {
+  color: var(--accent);
 }
 
 .group-pills {
@@ -97,23 +130,30 @@ const skillGroups = [
   color: var(--pill-text);
   border: 1px solid var(--border);
   border-radius: 2px;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
 
 .pill:hover {
   border-color: var(--accent);
   color: var(--text);
+  background-color: var(--tag-bg);
 }
 
 @media (max-width: 960px) {
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .skill-group:last-child:nth-child(odd) {
+    grid-column: span 2;
+  }
 }
 
 @media (max-width: 600px) {
   .skills-grid {
     grid-template-columns: 1fr;
+  }
+  .skill-group:last-child:nth-child(odd) {
+    grid-column: span 1;
   }
   .skill-group {
     padding: 20px 16px;

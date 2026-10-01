@@ -1,17 +1,17 @@
 <template>
   <div class="scoreboard" role="region" aria-label="Stats scoreboard">
     <div class="scoreboard-cell">
-      <span class="cell-value font-editorial">3</span>
+      <span class="cell-value font-editorial">4</span>
       <span class="cell-label">Sets Won</span>
     </div>
     <div class="scoreboard-cell">
-      <span class="cell-value font-editorial">4</span>
+      <span class="cell-value font-editorial">5</span>
       <span class="cell-label">Aces (Achievements)</span>
     </div>
     <div class="scoreboard-cell">
       <span class="cell-value font-editorial">1<span class="cell-sup">st</span></span>
       <span class="cell-label">Rank</span>
-      <span class="cell-sub">Cryptoforge</span>
+      <span class="cell-sub">SIH & Cryptoforge</span>
     </div>
     <div class="scoreboard-cell timer-cell">
       <span class="cell-value font-technical timer-value" aria-live="polite" aria-label="Time on court">{{ formattedTime }}</span>
@@ -48,10 +48,11 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--border);
-  border-radius: 3px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   margin-bottom: 48px;
   background-color: var(--scoreboard-bg);
+  box-shadow: var(--shadow);
 }
 
 .scoreboard-cell {

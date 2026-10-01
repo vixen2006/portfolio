@@ -31,6 +31,7 @@
       <!-- Actions -->
       <div class="card-actions">
         <a
+          v-if="project.githubUrl && project.githubUrl !== '#'"
           :href="project.githubUrl"
           class="btn-outline"
           target="_blank"
@@ -40,6 +41,17 @@
           GitHub ↗
         </a>
         <a
+          v-if="project.demoUrl"
+          :href="project.demoUrl"
+          class="btn-outline btn-demo"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="`Watch ${project.title} demo video`"
+        >
+          <span class="play-icon" aria-hidden="true">▶</span> Demo Video
+        </a>
+        <a
+          v-if="project.liveUrl && project.liveUrl !== '#'"
           :href="project.liveUrl"
           class="btn-outline"
           target="_blank"
@@ -78,10 +90,13 @@ const isHovered = ref(false)
   position: relative;
   background-color: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 3px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
   cursor: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-card.card-hovered {
@@ -92,11 +107,12 @@ const isHovered = ref(false)
 }
 
 .card-inner {
-  padding: 32px 28px 28px;
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
+  flex: 1;
   height: 100%;
-  gap: 20px;
+  gap: 16px;
 }
 
 .card-header {
@@ -107,16 +123,16 @@ const isHovered = ref(false)
 }
 
 .card-title {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--text);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .card-subtitle {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -129,14 +145,15 @@ const isHovered = ref(false)
   letter-spacing: 0.1em;
   color: var(--accent);
   flex-shrink: 0;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .card-description {
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 13.5px;
+  line-height: 1.6;
   color: var(--text-muted);
   flex: 1;
+  min-height: 68px;
 }
 
 .card-tags {
@@ -147,8 +164,28 @@ const isHovered = ref(false)
 
 .card-actions {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
   margin-top: auto;
+  padding-top: 4px;
+}
+
+.btn-demo {
+  background-color: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.btn-demo:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #0c120a;
+}
+
+.play-icon {
+  font-size: 10px;
+  margin-right: 2px;
 }
 
 /* Accent line that glows on hover */

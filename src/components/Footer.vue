@@ -3,6 +3,8 @@
     <div class="footer-inner">
       <p class="footer-credit">
         Built by <span class="credit-name font-editorial">Vaishnavi Trivedi</span>
+        <span class="footer-separator" aria-hidden="true">—</span>
+        <span class="footer-credo font-editorial">I learn by building.</span>
       </p>
       <nav class="footer-nav" aria-label="Footer social links">
         <a
@@ -54,6 +56,17 @@ const links = [
   font-weight: 600;
   color: var(--text);
   letter-spacing: -0.01em;
+}
+
+.footer-separator {
+  margin: 0 8px;
+  color: var(--text-subtle);
+}
+
+.footer-credo {
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-muted);
 }
 
 .footer-nav {

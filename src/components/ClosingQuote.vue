@@ -21,18 +21,23 @@
 
 .quote-wrap {
   position: relative;
-  max-width: 820px;
+  max-width: 860px;
   margin: 0 auto;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 64px 48px;
+  box-shadow: var(--shadow);
 }
 
 .quote-mark {
   font-size: 140px;
   line-height: 0.6;
   color: var(--accent);
-  opacity: 0.25;
+  opacity: 0.2;
   position: absolute;
-  top: -20px;
-  left: -60px;
+  top: 24px;
+  left: 24px;
   user-select: none;
 }
 

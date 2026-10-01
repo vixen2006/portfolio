@@ -33,6 +33,10 @@
 <script setup>
 const trophies = [
   {
+    title: 'Winners — SIH 2026 Internal College Round',
+    subtitle: 'Selected for National Final Submissions'
+  },
+  {
     title: '1st place — DTU Cryptoforge Invictus 2026',
     subtitle: 'Championship'
   },
@@ -57,8 +61,9 @@ const trophies = [
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border);
-  border-radius: 3px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
 .trophy-item {
