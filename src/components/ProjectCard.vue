@@ -51,6 +51,16 @@
           <span class="play-icon" aria-hidden="true">▶</span> Demo Video
         </a>
         <a
+          v-if="project.apkUrl"
+          :href="project.apkUrl"
+          class="btn-outline btn-apk"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="`Download ${project.title} APK`"
+        >
+          APK v0.1.0 ↗
+        </a>
+        <a
           v-if="project.liveUrl && project.liveUrl !== '#'"
           :href="project.liveUrl"
           class="btn-outline"
@@ -181,6 +191,16 @@ const isHovered = ref(false)
   background-color: var(--accent);
   border-color: var(--accent);
   color: #0c120a;
+}
+
+.btn-apk {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.btn-apk:hover {
+  background-color: var(--tag-bg);
+  border-color: var(--accent);
 }
 
 .play-icon {

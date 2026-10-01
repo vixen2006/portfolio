@@ -25,10 +25,11 @@ const projects = [
   {
     title: 'AgniDrishti',
     subtitle: 'Thermal Intelligence (SIH 2026 / NTRO)',
-    description: 'Satellite thermal intelligence platform classifying 5.9M+ VIIRS observations into 3,074 sources with 99.6% accuracy. Engineered the asynchronous FastAPI backend, NASA FIRMS data pipeline, and real-time alert triage with OSM GIS layers.',
-    tags: ['FastAPI', 'Python', 'NASA FIRMS', 'Machine Learning', 'GIS / OSM'],
-    githubUrl: 'https://github.com/vixen2006/AgniDrishti',
+    description: 'Satellite thermal intelligence platform classifying 5.9M+ VIIRS observations into 3,074 sources with 99.6% accuracy. Engineered the asynchronous FastAPI backend, NASA FIRMS pipeline, and AI-assisted Flutter mobile field client with real-time alert triage.',
+    tags: ['FastAPI', 'Flutter', 'Python', 'NASA FIRMS', 'GIS / OSM'],
+    githubUrl: 'https://github.com/vixen2006/AgniDrishti-Mobile',
     demoUrl: 'https://youtu.be/t2WzEcauQUo',
+    apkUrl: 'https://github.com/vixen2006/AgniDrishti-Mobile/releases/tag/v0.1.0',
     liveUrl: '#'
   },
   {
