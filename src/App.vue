@@ -1,10 +1,13 @@
 <template>
   <div class="portfolio-root">
+    <!-- Home Intro (Face particles, cinematic bars, and scroll reveal) -->
+    <HomeIntro @intro-state-change="onIntroStateChange" />
+
     <!-- Liquid Pearl Orb Three.js Canvas -->
     <LiquidOrb />
 
-    <!-- Top Fixed Nav -->
-    <Navbar :visitor-formatted="visitorFormatted" />
+    <!-- Top Fixed Nav (Fades in when scrolling past intro) -->
+    <Navbar :style="{ opacity: isPastIntro ? 1 : 0, pointerEvents: isPastIntro ? 'auto' : 'none', transition: 'opacity 0.4s ease' }" />
 
     <!-- Main Content -->
     <main>
@@ -14,13 +17,14 @@
       <Experience />
       <Stack />
       <Recognition />
-      <Contact :visitor-formatted="visitorFormatted" />
+      <Contact />
     </main>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted } from 'vue'
+import HomeIntro from './components/HomeIntro.vue'
 import LiquidOrb from './components/LiquidOrb.vue'
 import Navbar from './components/Navbar.vue'
 import Hero from './components/Hero.vue'
@@ -30,9 +34,12 @@ import Experience from './components/Experience.vue'
 import Stack from './components/Stack.vue'
 import Recognition from './components/Recognition.vue'
 import Contact from './components/Contact.vue'
-import { getVisitorNumber } from './utils/visitor.js'
 
-const visitorFormatted = ref('0001')
+const isPastIntro = ref(false)
+
+function onIntroStateChange(state) {
+  isPastIntro.value = state.isPastIntro
+}
 
 onMounted(() => {
   // Set up reveal animation observer immediately
@@ -55,13 +62,6 @@ onMounted(() => {
 
     elements.forEach(el => observer.observe(el))
   }
-
-  // Fetch visitor number in background
-  getVisitorNumber().then(num => {
-    if (num) visitorFormatted.value = num
-  }).catch(() => {
-    visitorFormatted.value = '0001'
-  })
 })
 </script>
 

@@ -14,18 +14,12 @@
       </a>
     </div>
     <small class="k rv">
-      You were visitor <span id="vf">{{ visitorFormatted || '0001' }}</span>. Nothing lasts, yet here I am pretending…
+      Nothing lasts, yet here I am pretending…
     </small>
   </section>
 </template>
 
 <script setup>
-defineProps({
-  visitorFormatted: {
-    type: String,
-    default: '0001'
-  }
-})
 
 const contactLinks = [
   { name: 'GitHub', url: 'https://github.com/vixen2006' },

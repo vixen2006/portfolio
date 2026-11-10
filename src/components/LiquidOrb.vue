@@ -207,42 +207,65 @@ onMounted(() => {
   }
   window.addEventListener('pointermove', onPointerMove, { passive: true })
 
-  const isMobile = () => window.innerWidth < 800
+  const isMobile = () => window.innerWidth < 850
 
   // 7 Sections: Hero, About, Baseline (Work), Match (Experience), Roster (Stack), Match point (Recognition), Contact
+  // After Hero, the orb stays strictly on the SIDE (positive X) so it never overlaps the text or stats.
   const L = [
-    [0, 0, 1.3],       // 0: hero
-    [3.2, 0, 1],       // 1: about
-    [4.4, 1.8, 0.55],  // 2: baseline (work)
-    [3.4, 0, 0.85],    // 3: the match (experience)
-    [4.4, 1.8, 0.55],  // 4: the roster (stack)
-    [3.2, 0, 0.8],     // 5: match point (recognition)
-    [0, 0, 1.4]        // 6: contact
+    [0, 0, 1.25],       // 0: hero (centered background)
+    [3.5, 0.1, 0.78],   // 1: about (comfortably on the right side)
+    [4.2, 1.5, 0.52],   // 2: baseline/projects (top-right side)
+    [3.6, 0.1, 0.76],   // 3: the match/experience (right side)
+    [4.2, 1.5, 0.52],   // 4: the roster/stack (top-right side)
+    [3.5, 0.1, 0.76],   // 5: match point/recognition (right side)
+    [3.4, 0.2, 0.8]     // 6: contact (side only, never centered over text)
   ]
+
+  let sectionCenters = []
+  function updateSectionCenters() {
+    const secs = [...document.querySelectorAll('main section')]
+    if (!secs.length) return
+    sectionCenters = secs.map(e => {
+      let top = 0
+      let curr = e
+      while (curr) {
+        top += curr.offsetTop
+        curr = curr.offsetParent
+      }
+      return top + e.offsetHeight * 0.5
+    })
+  }
 
   function onResize() {
     if (!renderer || !camera) return
     renderer.setSize(window.innerWidth, window.innerHeight, false)
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
+    updateSectionCenters()
   }
   window.addEventListener('resize', onResize)
   onResize()
 
+  // Recalculate centers after fonts/layout settle
+  setTimeout(updateSectionCenters, 300)
+  setTimeout(updateSectionCenters, 1000)
+
   function sIdx() {
-    const secs = [...document.querySelectorAll('main section')]
-    if (!secs.length) return 0
-    const y = window.scrollY + window.innerHeight * 0.5
-    const c = secs.map(e => e.offsetTop + e.offsetHeight / 2)
-    if (y <= c[0]) return 0
-    for (let k = 0; k < c.length - 1; k++) {
-      if (y < c[k + 1]) {
-        let f = (y - c[k]) / (c[k + 1] - c[k])
+    if (!sectionCenters.length) {
+      updateSectionCenters()
+      if (!sectionCenters.length) return 0
+    }
+    const scrollMid = window.scrollY + window.innerHeight * 0.5
+    if (scrollMid <= sectionCenters[0]) return 0
+    for (let k = 0; k < sectionCenters.length - 1; k++) {
+      if (scrollMid < sectionCenters[k + 1]) {
+        let f = (scrollMid - sectionCenters[k]) / (sectionCenters[k + 1] - sectionCenters[k])
+        f = Math.max(0, Math.min(1, f))
         f = f * f * (3 - 2 * f)
         return k + f
       }
     }
-    return c.length - 1
+    return sectionCenters.length - 1
   }
 
   let sm = 0
@@ -283,10 +306,28 @@ onMounted(() => {
     let y = a[1] + (b[1] - a[1]) * f
     let sc2 = a[2] + (b[2] - a[2]) * f
 
+    // Visible half-width at depth z=7
+    const visibleHalfW = 7 * Math.tan((camera.fov * Math.PI) / 360) * camera.aspect
+
     if (isMobile()) {
-      x = 0
-      y = sm < 0.5 ? 0.6 : 2.4
-      sc2 *= 0.62
+      if (sm < 0.4) {
+        x = 0
+        y = 0.5
+        sc2 = 0.65
+      } else {
+        // Keep strictly on side and out of text path on mobile/narrow screens
+        x = Math.max(visibleHalfW * 0.62, 1.0)
+        y = 1.7
+        sc2 = 0.4
+      }
+    } else {
+      // Desktop: after hero (sm >= 0.4), ensure orb stays well to the right side
+      if (sm >= 0.4) {
+        const minSideX = Math.max(3.2, visibleHalfW * 0.72)
+        if (a[0] > 0 && b[0] > 0) {
+          x = Math.max(x, minSideX * 0.92)
+        }
+      }
     }
 
     intro = Math.min(1, intro + 0.012)

@@ -31,22 +31,12 @@
           </div>
         </transition>
       </div>
-
-      <span id="vis" v-if="visitorFormatted">Visitor {{ visitorFormatted }}</span>
-      <span id="vis" v-else>Visitor 0001</span>
     </div>
   </nav>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-
-defineProps({
-  visitorFormatted: {
-    type: String,
-    default: '0001'
-  }
-})
 
 const isOpen = ref(false)
 const dropdownRef = ref(null)

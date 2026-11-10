@@ -9,7 +9,9 @@
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -159,8 +161,13 @@ h1 em {
 }
 
 @keyframes shine {
-  from { background-position: 130% 0; }
-  to { background-position: -130% 0; }
+  from {
+    background-position: 130% 0;
+  }
+
+  to {
+    background-position: -130% 0;
+  }
 }
 
 .sub {
@@ -219,10 +226,14 @@ h2 {
 }
 
 .lead {
-  max-width: 44ch;
+  max-width: 56ch;
   font-size: clamp(1.05rem, 1.7vw, 1.35rem);
   line-height: 1.6;
   color: #d3d0c9;
+}
+
+.lead+.lead {
+  margin-top: 1.25rem;
 }
 
 .stats {
@@ -301,7 +312,8 @@ h2 {
   justify-content: flex-end;
 }
 
-.tg span, .chips span {
+.tg span,
+.chips span {
   font: 400 .68rem 'JetBrains Mono', monospace;
   border: 1px solid var(--line);
   border-radius: 99px;
@@ -313,7 +325,8 @@ h2 {
   white-space: nowrap;
 }
 
-.tg span:hover, .chips span:hover {
+.tg span:hover,
+.chips span:hover {
   background: #fff;
   color: #000;
 }
@@ -524,16 +537,21 @@ h2 {
   .row {
     grid-template-columns: 36px 1fr;
   }
+
   .row .tg {
     grid-column: 2;
     justify-content: flex-start;
   }
-  .grp, .xp {
+
+  .grp,
+  .xp {
     grid-template-columns: 1fr;
   }
+
   section {
     padding: 14vh 6vw 8vh;
   }
+
   h2 {
     max-width: none;
   }
@@ -546,6 +564,7 @@ h2 {
     filter: none !important;
     transition: none !important;
   }
+
   .name .n {
     animation: none !important;
   }

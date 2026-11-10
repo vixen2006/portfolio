@@ -36,6 +36,15 @@
 <script setup>
 const projects = [
   {
+    title: 'Compass',
+    subtitle: 'Autonomous Recursive Creator Intelligence System',
+    description: 'Autonomous recursive intelligence system for YouTube creators. Distributes strategic thinking across three cooperating agents (Creator Memory Brain, Research Monitor, Strategist) with Bayesian confidence learning, 3-tier LLM failover (NIM → Gemini → Fallback), anti-hallucination reality checks, and an omnipresent AI strategy consultant co-pilot.',
+    tags: ['Python 3.11+', 'React 19', 'Multi-Agent', 'NVIDIA NIM', 'Gemini', 'Bayesian ML'],
+    links: [
+      { name: 'GitHub', url: 'https://github.com/vixen2006/COMPASS' }
+    ]
+  },
+  {
     title: 'AgniDrishti',
     subtitle: 'Thermal Intelligence, SIH 2026 / NTRO',
     description: 'Satellite thermal intelligence platform classifying 5.9M+ VIIRS observations into 3,074 sources with 99.6% accuracy. Async FastAPI backend, NASA FIRMS pipeline and an AI-assisted Flutter field client with real-time alert triage.',

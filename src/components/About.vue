@@ -3,7 +3,10 @@
     <div class="k rv">01 / About</div>
     <h2 class="rv" id="about-heading">I learn by building.</h2>
     <p class="lead rv">
-      Crafting fast, reliable systems, from satellite thermal intelligence and air-gapped CV integrity frameworks to real-time trading engines and full-stack LLM evaluation platforms, and uncovering where they break before anyone else does.
+      Hi, I’m Vaishnavi, a full-stack developer and designer who learns mostly by building things and then finding out exactly how they break. So far that’s a satellite thermal intelligence platform, an air-gapped framework that checks whether computer vision models can be trusted, a live trading engine, and an RL agent that defends a network from hackers.
+    </p>
+    <p class="lead rv">
+      I love designing as much as I love building. A system that works but looks like an afterthought isn’t finished for me, so I care about how things feel as well as how fast they run. Lately I’ve been exploring agentic AI workflows, trying to get AI to do useful work on its own instead of just sounding smart. I’ve interned at DRDO and Acolyte Living, I win the occasional hackathon, and I’m always somewhere between “it works” and “it should look better.”
     </p>
     <div class="stats rv">
       <div>
